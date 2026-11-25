@@ -17,7 +17,6 @@
       --text: #1e293b;
       --muted: #64748b;
       --border: #e2e8f0;
-      --gold: #f59e0b;
     }
 
     * {
@@ -39,6 +38,11 @@
       text-decoration: none;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     /* Header / Navbar */
     header {
       background: var(--card);
@@ -49,9 +53,9 @@
     }
 
     .nav-container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 1rem 1.25rem;
+      padding: 0.95rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -126,17 +130,20 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    /* Hero Section */
+    /* Hero Section with Photo */
     .hero {
       background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 65%, #153e63 100%);
       color: #ffffff;
-      padding: 4.5rem 1.25rem 4rem;
-      text-align: center;
+      padding: 3.75rem 1.25rem;
     }
 
-    .hero-inner {
-      max-width: 780px;
+    .hero-grid {
+      max-width: 1120px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 2.5rem;
     }
 
     .badge {
@@ -144,53 +151,82 @@
       background: rgba(13, 148, 136, 0.22);
       border: 1px solid rgba(45, 212, 191, 0.4);
       color: #5eead4;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.15rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
       margin-bottom: 1.1rem;
     }
 
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
     .hero p {
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       color: #cbd5e1;
-      max-width: 620px;
-      margin: 0 auto 2rem;
+      margin-bottom: 1.75rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 0.85rem;
-      margin-bottom: 2.25rem;
+      margin-bottom: 1.75rem;
     }
 
     .trust-strip {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.25rem 2rem;
-      font-size: 0.9rem;
+      gap: 0.85rem 1.5rem;
+      font-size: 0.88rem;
       color: #e2e8f0;
       border-top: 1px solid rgba(255, 255, 255, 0.14);
-      padding-top: 1.5rem;
+      padding-top: 1.25rem;
     }
 
-    .trust-strip span {
-      display: inline-flex;
+    .hero-photo-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: #133554;
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo-badge {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background: rgba(9, 26, 43, 0.88);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      color: #f8fafc;
+      display: flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .hero-photo-badge strong {
+      color: #5eead4;
     }
 
     /* Sections */
@@ -199,14 +235,14 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
     .section-header {
       text-align: center;
       max-width: 650px;
-      margin: 0 auto 2.75rem;
+      margin: 0 auto 2.5rem;
     }
 
     .section-header h2 {
@@ -220,6 +256,54 @@
     .section-header p {
       color: var(--muted);
       font-size: 1.02rem;
+    }
+
+    /* Photo Showcase Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(15, 41, 66, 0.04);
+    }
+
+    .gallery-img-wrap {
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      overflow: hidden;
+    }
+
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-card:hover .gallery-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .gallery-body {
+      padding: 1.25rem 1.35rem;
+    }
+
+    .gallery-body h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
     /* Pricing Grid */
@@ -429,6 +513,12 @@
       color: #ffffff;
     }
 
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
       .nav-links {
         display: none;
@@ -454,6 +544,7 @@
         <span>South Calgary Home Care</span>
       </a>
       <nav class="nav-links">
+        <a href="#results">Our Work</a>
         <a href="#pricing">Flat-Rate Pricing</a>
         <a href="#quote">Instant Estimate</a>
         <a href="#areas">Service Areas</a>
@@ -463,18 +554,89 @@
   </header>
 
   <section class="hero">
-    <div class="hero-inner">
-      <div class="badge">SE &amp; SW Calgary Residential &amp; Turnover Specialists</div>
-      <h1>Spotless Homes. Honest Flat-Rate Pricing.</h1>
-      <p>No hourly clock-watching or surprise add-on fees. Trusted, thorough residential, deep, move-out, and Airbnb turnover cleaning across South Calgary—with all supplies included.</p>
-      <div class="hero-actions">
-        <a href="#quote" class="btn btn-primary">Get Your Instant Flat-Rate Quote</a>
-        <a href="sms:5876645006?body=Hi%20South%20Calgary%20Home%20Care!%20I'd%20like%20to%20book%20a%20cleaning." class="btn btn-outline">Text Us: (587) 664-5006</a>
+    <div class="hero-grid">
+      <div>
+        <div class="badge">SE &amp; SW Calgary Residential &amp; Turnover Specialists</div>
+        <h1>Spotless Homes. Honest Flat-Rate Pricing.</h1>
+        <p>No hourly clock-watching or surprise add-on fees. Trusted, thorough residential, deep, move-out, and Airbnb turnover cleaning across South Calgary—with all supplies included.</p>
+        <div class="hero-actions">
+          <a href="#quote" class="btn btn-primary">Get Your Instant Flat-Rate Quote</a>
+          <a href="sms:5870000000?body=Hi%20South%20Calgary%20Home%20Care!%20I'd%20like%20to%20book%20a%20cleaning." class="btn btn-outline">Text Us: (587) 000-0000</a>
+        </div>
+        <div class="trust-strip">
+          <span>&#10003; All Supplies Included</span>
+          <span>&#10003; Transparent Flat Rates</span>
+          <span>&#10003; Vetted Local Cleaners</span>
+        </div>
       </div>
-      <div class="trust-strip">
-        <span>&#10003; All Supplies &amp; Equipment Included</span>
-        <span>&#10003; 100% Transparent Flat Rates</span>
-        <span>&#10003; Weekday &amp; Turnover Availability</span>
+
+      <div class="hero-photo-card">
+        <!-- Upload hero-home.jpg to your GitHub repo to replace the placeholder -->
+        <img
+          src="hero-home.jpg"
+          alt="Bright, freshly cleaned modern kitchen and living room in South Calgary"
+          onerror="this.src='https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80'"
+        />
+        <div class="hero-photo-badge">
+          <span><strong>100% Flat-Rate Guarantee</strong> &bull; No Hourly Surprises</span>
+          <span>SE / SW Calgary</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" style="padding-bottom: 1.5rem;">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Every Clean Looks Like</h2>
+        <p>Consistent checklists, professional-grade products, and vetted South Calgary cleaners who treat your home with care.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <!-- Upload cleaner-action.jpg to your GitHub repo -->
+            <img
+              src="cleaner-action.jpg"
+              alt="Professional house cleaner wiping down kitchen countertops"
+              onerror="this.src='https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80'"
+            />
+          </div>
+          <div class="gallery-body">
+            <h3>Trusted, Vetted Local Cleaners</h3>
+            <p>Our cleaners arrive on time with full HEPA vacuums, microfiber systems, and surface-safe sanitizers.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <!-- Upload clean-kitchen.jpg to your GitHub repo -->
+            <img
+              src="clean-kitchen.jpg"
+              alt="Sparkling clean kitchen island, sink, and stainless appliances"
+              onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'"
+            />
+          </div>
+          <div class="gallery-body">
+            <h3>Kitchens &amp; Living Spaces</h3>
+            <p>Degreased stovetops, polished stainless steel, sanitized countertops, and streak-free floors throughout.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <!-- Upload clean-bath.jpg to your GitHub repo -->
+            <img
+              src="clean-bath.jpg"
+              alt="Spotless modern bathroom vanity, mirror, and glass shower"
+              onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80'"
+            />
+          </div>
+          <div class="gallery-body">
+            <h3>Deep-Sanitized Bathrooms</h3>
+            <p>Scrubbed tubs, showers, tile, fixtures, mirrors, and sanitized toilets—leaving every bathroom hotel-fresh.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -637,11 +799,11 @@
 
   <footer>
     <p><strong>South Calgary Home Care</strong> &bull; SE &amp; SW Calgary, AB</p>
-    <p style="margin-top:0.35rem;">Flat-Rate Residential, Deep, Move-Out &amp; Turnover Cleaning &bull; Text or Call (587) 664-5006</p>
+    <p style="margin-top:0.35rem;">Flat-Rate Residential, Deep, Move-Out &amp; Turnover Cleaning &bull; Text or Call (587) 000-0000</p>
   </footer>
 
   <script>
-    const BUSINESS_PHONE = "5876645006";
+    const BUSINESS_PHONE = "5870000000";
 
     function updateQuote() {
       const service = document.getElementById("serviceType").value;
